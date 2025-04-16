@@ -1,0 +1,21 @@
+name: your_project
+description: A Flutter project
+publish_to: 'none'
+
+environment:
+  sdk: ">=2.17.0 <4.0.0"  # Dart 3 대응
+
+dependencies:
+  flutter:
+    sdk: flutter
+  http: ^0.13.6
+  image_picker: ^1.0.4
+  mime: ^1.0.4
+  http_parser: ^4.0.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true
