@@ -9,7 +9,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: '전세사기 예방',
+      title: '전세사기 예방 1',
       theme: ThemeData(primarySwatch: Colors.indigo),
       home: HomePage(),
       debugShowCheckedModeBanner: false,
