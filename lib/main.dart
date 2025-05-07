@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'pages/home_page.dart';
+import 'routes.dart';
 
 void main() {
   runApp(MyApp());
@@ -9,11 +9,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: '전세사기 예방 2',
-      theme: ThemeData(primarySwatch: Colors.indigo),
-      home: HomePage(),
+      title: 'AI 전세 계약서 분석',
       debugShowCheckedModeBanner: false,
+      initialRoute: '/',         // 첫 시작은 홈 화면
+      routes: appRoutes,         // 라우트 등록
     );
   }
 }
-//수정 테스트

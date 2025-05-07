@@ -1,30 +1,24 @@
-import 'dart:io';
+
 import 'dart:convert';
+import 'dart:io';
 import 'package:http/http.dart' as http;
 
-class ApiService {
-  static Future<Map<String, dynamic>> uploadImage(File image) async {
-    final uri = Uri.parse('http://<FLASK_SERVER_IP>:5000/analyze'); // 🔁 Flask 서버 주소로 바꾸기
+class APIService {
+  static const String _baseUrl = 'http://10.0.2.2:5000'; // 실제 서버 주소로 교체
+
+  static Future<Map<String, dynamic>> analyzeContract(File file) async {
+    final uri = Uri.parse('$_baseUrl/analyze');
     final request = http.MultipartRequest('POST', uri);
 
-    request.files.add(
-      await http.MultipartFile.fromPath(
-        'image', // Flask 백엔드에서 받는 필드명과 일치해야 함
-        image.path,
-      ),
-    );
+    request.files.add(await http.MultipartFile.fromPath('file', file.path));
 
-    try {
-      final response = await request.send();
-      final responseBody = await response.stream.bytesToString();
+    final response = await request.send();
 
-      if (response.statusCode == 200) {
-        return json.decode(responseBody);
-      } else {
-        throw Exception('서버 오류: ${response.statusCode}');
-      }
-    } catch (e) {
-      throw Exception('요청 실패: $e');
+    if (response.statusCode == 200) {
+      final respStr = await response.stream.bytesToString();
+      return jsonDecode(respStr);
+    } else {
+      throw Exception('서버 오류: ${response.statusCode}');
     }
   }
 }
