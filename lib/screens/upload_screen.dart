@@ -47,6 +47,7 @@ class _UploadScreenState extends State<UploadScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color(0xFFF9F9FF),
       appBar: AppBar(
         title: const Text("계약서 업로드"),
         centerTitle: true,

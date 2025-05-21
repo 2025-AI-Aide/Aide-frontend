@@ -59,10 +59,10 @@ class _AnalyzeScreenState extends State<AnalyzeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    // 잘못된 파일이면 빈 화면 반환
     if (!_hasValidFile) return const SizedBox.shrink();
 
     return Scaffold(
+      backgroundColor: const Color(0xFFF9F9FF),
       appBar: AppBar(
         title: const Text("계약서 분석"),
         centerTitle: true,
@@ -70,44 +70,50 @@ class _AnalyzeScreenState extends State<AnalyzeScreen> {
         foregroundColor: Colors.white,
       ),
       body: Padding(
-        padding: const EdgeInsets.all(24.0),
+        padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            const SizedBox(height: 20),
+            const SizedBox(height: 10),
             const Text(
               "업로드한 계약서를 AI가 분석합니다",
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
               textAlign: TextAlign.center,
             ),
-            const SizedBox(height: 30),
-            if (_isImage(file.path))
-              Image.file(file, height: 300, fit: BoxFit.contain)
-            else ...[
-              const Icon(Icons.picture_as_pdf, size: 120, color: Colors.grey),
-              const SizedBox(height: 10),
-              Text(
-                path.basename(file.path),
-                style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
-              ),
-            ],
-            const SizedBox(height: 40),
-            _isLoading
-                ? const CircularProgressIndicator()
-                : ElevatedButton.icon(
-              onPressed: () => _startAnalysis(file),
-              icon: const Icon(Icons.analytics),
-              label: const Text("AI 분석하기"),
-              style: ElevatedButton.styleFrom(
-                backgroundColor: const Color(0xFF9B81EA),
-                foregroundColor: Colors.white,
-                minimumSize: const Size(double.infinity, 60),
-                textStyle: const TextStyle(fontSize: 18),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12),
+            const SizedBox(height: 20),
+            Expanded(
+              child: Center(
+                child: _isImage(file.path)
+                    ? Image.file(file, fit: BoxFit.contain, width: double.infinity)
+                    : Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Icon(Icons.picture_as_pdf, size: 150, color: Colors.grey),
+                    const SizedBox(height: 12),
+                    Text(
+                      path.basename(file.path),
+                      style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+                    ),
+                  ],
                 ),
               ),
             ),
           ],
+        ),
+      ),
+      bottomNavigationBar: Padding(
+        padding: const EdgeInsets.fromLTRB(16, 0, 16, 24),
+        child: _isLoading
+            ? const SizedBox(height: 60, child: Center(child: CircularProgressIndicator()))
+            : ElevatedButton.icon(
+          onPressed: () => _startAnalysis(file),
+          icon: const Icon(Icons.analytics),
+          label: const Text("AI 분석하기", style: TextStyle(fontSize: 20)),
+          style: ElevatedButton.styleFrom(
+            backgroundColor: const Color(0xFF9B81EA),
+            foregroundColor: Colors.white,
+            minimumSize: const Size(double.infinity, 60),
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+          ),
         ),
       ),
     );
