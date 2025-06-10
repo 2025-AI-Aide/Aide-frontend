@@ -1,7 +1,7 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:path/path.dart' as path;
-import '../services/api_service.dart'; // 파일 경로에 맞게 import
+import '../services/api_service.dart';
 
 class AnalyzeScreen extends StatefulWidget {
   @override
