@@ -5,6 +5,7 @@ import '../models/analysis_model.dart';
 
 class APIService {
   static const String _baseUrl = 'http://10.0.2.2:8080'; // Emulator 기준
+  //static const String _baseUrl = 'http://211.114.113.223:8080'; // Emulator 기준
 
   static Future<List<ContractAnalysis>> analyzeContract(File file) async {
     final uri = Uri.parse('$_baseUrl/api/contract/upload');

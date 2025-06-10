@@ -58,7 +58,7 @@ class HomeScreen extends StatelessWidget {
               // 셀프 체크 리스트 버튼
               ElevatedButton.icon(
                 onPressed: () {
-                  Navigator.pushNamed(context, '/checklist');
+                  Navigator.pushNamed(context, '/checklist_menu');
                 },
                 icon: const Icon(Icons.check_circle_outline, size: 30),
                 label: const Text(

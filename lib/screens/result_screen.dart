@@ -88,7 +88,7 @@ class _ResultScreenState extends State<ResultScreen> {
     return Scaffold(
       backgroundColor: const Color(0xFFF9F9FF),
       appBar: AppBar(
-        title: const Text("계약서 분석 결과", style: TextStyle(fontSize: 24)),
+        title: const Text("계약서 분석 결과"),
         centerTitle: true,
         backgroundColor: const Color(0xFF2C4FF4),
         foregroundColor: Colors.white,
@@ -167,17 +167,6 @@ class _ResultScreenState extends State<ResultScreen> {
                             side: const BorderSide(color: Colors.grey),
                           ),
                           child: const Text("계약서 다시 업로드", style: TextStyle(fontSize: 16)),
-                        ),
-                      ),
-                      const SizedBox(width: 12),
-                      Expanded(
-                        child: OutlinedButton(
-                          onPressed: () {},
-                          style: OutlinedButton.styleFrom(
-                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-                            side: const BorderSide(color: Colors.grey),
-                          ),
-                          child: const Text("PDF 저장", style: TextStyle(fontSize: 16)),
                         ),
                       ),
                     ],
